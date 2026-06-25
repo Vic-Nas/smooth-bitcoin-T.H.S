@@ -27,7 +27,7 @@ reward(block_height) = R × e^(-k × block_height)
 
 ## Implementation Steps
 
-- [ ] **Step 1 — Identity**
+- [X] **Step 1 — Identity**
 
   ```yaml
   File:    chainparams.cpp
