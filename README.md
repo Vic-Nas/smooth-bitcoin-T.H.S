@@ -36,10 +36,9 @@ reward(block_height) = R × e^(-k × block_height)
   Difficulty: trivial
   ```
 
-- [ ] **Step 2 — Display Unit**
+- [X] **Step 2 — Display Unit** (Abandoned)
 
   ```yaml
-  File:    bitcoin.cpp / util.cpp
   Change:  Display alias: cent at 10⁻²
            satoshis internal precision unchanged at 10⁻⁸
   Difficulty: trivial
@@ -48,7 +47,6 @@ reward(block_height) = R × e^(-k × block_height)
 - [ ] **Step 3 — Supply**
 
   ```yaml
-  File:    consensus/params.h
   Change:  MAX_MONEY from 21,000,000 to S × 10⁹
   Difficulty: trivial
   ```
@@ -56,7 +54,6 @@ reward(block_height) = R × e^(-k × block_height)
 - [ ] **Step 4 — Fixed Fee Rate**
 
   ```yaml
-  File:    validation.cpp / policy/fees.cpp
   Change:  Remove fee market and mempool fee estimation
            Enforce fixed rate per byte
            100% of fees go to miner (lock it)
@@ -66,7 +63,6 @@ reward(block_height) = R × e^(-k × block_height)
 - [ ] **Step 5 — Emission Curve**
 
   ```yaml
-  File:    validation.cpp
   Remove:  50 × (1/2)^(block_height/210000)
   Replace: R × e^(-k × block_height)
            Compute and cache k, R at startup from S, H, T
@@ -76,7 +72,6 @@ reward(block_height) = R × e^(-k × block_height)
 - [ ] **Step 6 — Mempool Fair Queuing**
 
   ```yaml
-  File:    txmempool.cpp / txmempool.h
   Change:  Remove fee priority ordering
            Implement fair queuing by sender address:
              - track per-address queue depth
@@ -88,7 +83,6 @@ reward(block_height) = R × e^(-k × block_height)
 - [ ] **Step 7 — Strict Miner Ordering**
 
   ```yaml
-  File:    miner.cpp
   Change:  Enforce block transaction order matches
            fair queue order exactly
            Reject blocks where miner deviated
@@ -98,7 +92,6 @@ reward(block_height) = R × e^(-k × block_height)
 - [ ] **Step 8 — Stealth Addresses**
 
   ```yaml
-  Files:   script/standard.cpp, keystore.cpp
   Change:  Receiver-side stealth addresses:
              - sender derives one-time address from
                recipient's published meta-address
@@ -111,7 +104,6 @@ reward(block_height) = R × e^(-k × block_height)
 - [ ] **Step 9 — Genesis Block**
 
   ```yaml
-  File:    chainparams.cpp
   Message: "2026: Same rules for every transaction,
             every address, every person."
   Action:  Set genesis timestamp
